@@ -1,25 +1,29 @@
-function Form() {
+type PropType = {
+  setFormIsVisible: (valor : boolean) => void
+};
+
+function Form(props: PropType) {
+  const { setFormIsVisible } = props;
   return (
     <form>
-      <h1>Gerenciador de senhas</h1>
       <label htmlFor="serviceName">
-        <input type="text" id="serviceName" />
         Nome do serviço
+        <input type="text" id="serviceName" />
       </label>
       <label htmlFor="login">
-        <input type="text" id="login" />
         Login
+        <input type="text" id="login" />
       </label>
       <label htmlFor="password">
-        <input type="password" id="password" />
         Senha
+        <input type="password" id="password" />
       </label>
       <label htmlFor="url">
-        <input type="text" id="url" />
         URL
+        <input type="text" id="url" />
       </label>
       <button>Cadastrar</button>
-      <button>Cancelar</button>
+      <button onClick={ () => setFormIsVisible(false) }>Cancelar</button>
     </form>
   );
 }
