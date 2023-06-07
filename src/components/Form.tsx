@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 type PropType = {
-  setFormIsVisible: (valor : boolean) => void
+  setFormIsVisible: (valor: boolean) => void;
 };
 
 function Form(props: PropType) {
@@ -39,17 +39,22 @@ function Form(props: PropType) {
     if (!regexLettersNumbers.test(password)) return false;
     if (!regexCharactersSpecial.test(password)) return false;
 
-    if (password.length >= 8 && password.length
-      <= 16 && regexCharactersSpecial.test(password)
-      && regexLettersNumbers.test(password)) return true;
+    if (
+      password.length >= 8
+      && password.length <= 16
+      && regexCharactersSpecial.test(password)
+      && regexLettersNumbers.test(password)
+    ) return true;
   };
 
   // validação de todo o form
   const validationForm = () => {
-    if (validationServiceName()
-    && validationLogin()
-    && validationUrl()
-    && validationPassword()) setIsDisabled(false);
+    if (
+      validationServiceName()
+      && validationLogin()
+      && validationUrl()
+      && validationPassword()
+    ) setIsDisabled(false);
     else setIsDisabled(true);
   };
 
@@ -58,6 +63,9 @@ function Form(props: PropType) {
     validationForm();
   }, [serviceName, login, password, url]);
 
+  const classNameValid = 'valid-password-check';
+  const classNameInvalid = 'invalid-password-check';
+
   return (
     <form>
       <label htmlFor="serviceName">
@@ -65,7 +73,9 @@ function Form(props: PropType) {
         <input
           type="text"
           id="serviceName"
-          onChange={ (e) => setServiceName(e.target.value) }
+          onChange={
+            (e) => setServiceName(e.target.value)
+          }
         />
       </label>
       <label htmlFor="login">
@@ -73,7 +83,9 @@ function Form(props: PropType) {
         <input
           type="text"
           id="login"
-          onChange={ (e) => setLogin(e.target.value) }
+          onChange={
+            (e) => setLogin(e.target.value)
+          }
         />
       </label>
       <label htmlFor="password">
@@ -81,21 +93,27 @@ function Form(props: PropType) {
         <input
           type="password"
           id="password"
-          minLength={ 8 }
-          maxLength={ 16 }
-          onChange={ (e) => setPassword(e.target.value) }
+          onChange={
+            (e) => setPassword(e.target.value)
+          }
         />
       </label>
       <label htmlFor="url">
         URL
-        <input
-          type="text"
-          id="url"
-          onChange={ (e) => setUrl(e.target.value) }
-        />
+        <input type="text" id="url" onChange={ (e) => setUrl(e.target.value) } />
       </label>
       <button disabled={ isDisabled }>Cadastrar</button>
       <button onClick={ () => setFormIsVisible(false) }>Cancelar</button>
+      <div>
+        <p className={ password.length >= 8 ? classNameValid : classNameInvalid }>
+          Possuir 8 ou mais caracteres
+        </p>
+        <p className={ password.length <= 16 ? classNameValid : classNameInvalid }>
+          Possuir até 16 caracteres
+        </p>
+        <p className={ /^(?=.*[a-zA-Z])(?=.*\d).*$/.test(password) ? classNameValid : classNameInvalid }>Possuir letras e números</p>
+        <p className={ /[!@#$%^&*(),.?":{}|<>]/.test(password) ? classNameValid : classNameInvalid }>Possuir algum caractere especial </p>
+      </div>
     </form>
   );
 }
