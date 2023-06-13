@@ -4,6 +4,8 @@ import './App.css';
 import Form from './components/Form';
 import Title from './components/Title';
 import { IProducts } from './types';
+import trash from './images/trash-img.svg';
+import link from './images/link-img.svg';
 
 function App() {
   const [formIsVisible, setFormIsVisible] = useState(false);
@@ -42,12 +44,25 @@ function App() {
         {' '}
         { passwords.length > 0 ? passwords.map((password, key) => (
           <li key={ key }>
-            <a href={ password.url }>{ password.serviceName }</a>
-            <p>Login</p>
-            <p>{password.login}</p>
-            <p>Senha</p>
-            <p>{password.password}</p>
-            <button data-testid="remove-btn" onClick={ () => removePassword(key) }> </button>
+            <a href={ password.url }>
+              { password.serviceName }
+              <img alt="link" src={ link } />
+            </a>
+            <p className="loginCss">Login</p>
+            <p className="loginPasswordCss">
+              {password.login}
+            </p>
+            <p className="loginCss">Senha</p>
+            <p className="loginPasswordCss">
+              {password.password}
+            </p>
+            <button
+              className="btnRemove"
+              data-testid="remove-btn"
+              onClick={ () => removePassword(key) }
+            >
+              <img alt="Delete" src={ trash } />
+            </button>
           </li>
         )) : <h3 className="Mensagem">nenhuma senha cadastrada</h3> }
       </ul>

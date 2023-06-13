@@ -28,3 +28,28 @@ body {
   color: white;
   font-family: Roboto , sans-serif;
 }
+
+.loginCss {
+  color: #9cbce0;
+  font-family: Roboto , sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  height: 14px;
+  margin-top: 30px;
+  width: 30px;
+}
+
+.loginPasswordCss {
+  color: #e9e9e9;
+  font-family: Roboto , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  width: 93px;
+}
+
+.btnRemove {
+  background-color: transparent;
+  border: none;
+  float: right;
+}
