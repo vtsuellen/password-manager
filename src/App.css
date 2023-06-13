@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap') ;
+
 .valid-password-check {
   color: #aeffb6;
 }
@@ -20,4 +22,9 @@ body {
   font-size: 18px;
   height: 55px;
   width: 256px;
+}
+
+.Mensagem {
+  color: white;
+  font-family: Roboto , sans-serif;
 }

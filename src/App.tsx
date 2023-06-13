@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import './App.css';
 import Form from './components/Form';
@@ -17,6 +18,11 @@ function App() {
   //     }
   //   }
   // }, []);
+  const removePassword = (index: number) => {
+    const updatedPasswords = [...passwords];
+    updatedPasswords.splice(index, 1);
+    setPasswords(updatedPasswords);
+  };
 
   return (
     <body>
@@ -41,8 +47,9 @@ function App() {
             <p>{password.login}</p>
             <p>Senha</p>
             <p>{password.password}</p>
+            <button data-testid="remove-btn" onClick={ () => removePassword(key) }> </button>
           </li>
-        )) : <h3>nenhuma senha cadastrada</h3> }
+        )) : <h3 className="Mensagem">nenhuma senha cadastrada</h3> }
       </ul>
     </body>
   );
