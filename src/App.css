@@ -5,3 +5,19 @@
 .invalid-password-check {
   color: #f58989;
 }
+
+body {
+  background-color: #272a37;
+  display: grid;
+  place-items: center;
+}
+
+.novaSenha {
+  background: #3590f5;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  font-size: 18px;
+  height: 55px;
+  width: 256px;
+}

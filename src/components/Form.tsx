@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
+import './form.css';
+import { IProducts } from '../types';
 
 type PropType = {
   setFormIsVisible: (valor: boolean) => void;
+  setPasswords: (valor: IProducts[]) => void;
+  passwords: IProducts[];
 };
 
 function Form(props: PropType) {
-  const { setFormIsVisible } = props;
+  const { setFormIsVisible, setPasswords, passwords } = props;
   const [serviceName, setServiceName] = useState('');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -41,9 +45,9 @@ function Form(props: PropType) {
 
     if (
       password.length >= 8
-      && password.length <= 16
-      && regexCharactersSpecial.test(password)
-      && regexLettersNumbers.test(password)
+     && password.length <= 16
+     && regexCharactersSpecial.test(password)
+     && regexLettersNumbers.test(password)
     ) return true;
   };
 
@@ -51,10 +55,10 @@ function Form(props: PropType) {
   const validationForm = () => {
     if (
       validationServiceName()
-      && validationLogin()
-      && validationUrl()
-      && validationPassword()
-    ) setIsDisabled(false);
+     && validationLogin()
+     && validationUrl()
+     && validationPassword()
+    )setIsDisabled(false);
     else setIsDisabled(true);
   };
 
@@ -66,53 +70,107 @@ function Form(props: PropType) {
   const classNameValid = 'valid-password-check';
   const classNameInvalid = 'invalid-password-check';
 
+  const savePasswords = (e: any) => {
+    e.preventDefault();
+
+    // let passwords:IProducts [] = [];
+
+    // if (Object.prototype.hasOwnProperty.call(localStorage, 'passwords')) {
+    //   const storage = localStorage.getItem('passwords');
+    //   if (storage) {
+    //     passwords = JSON
+    //       .parse(storage) as [IProducts];
+    //   }
+    // }
+    // passwords.push({ serviceName, login, password, url });
+
+    // localStorage.setItem('passwords', JSON.stringify(passwords));
+    const newPasswords = [...passwords, { serviceName, login, password, url }];
+    setPasswords(newPasswords);
+    setFormIsVisible(false);
+  };
+
   return (
-    <form>
-      <label htmlFor="serviceName">
-        Nome do serviço
-        <input
-          type="text"
-          id="serviceName"
-          onChange={
-            (e) => setServiceName(e.target.value)
-          }
-        />
-      </label>
-      <label htmlFor="login">
-        Login
-        <input
-          type="text"
-          id="login"
-          onChange={
-            (e) => setLogin(e.target.value)
-          }
-        />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input
-          type="password"
-          id="password"
-          onChange={
-            (e) => setPassword(e.target.value)
-          }
-        />
-      </label>
-      <label htmlFor="url">
-        URL
-        <input type="text" id="url" onChange={ (e) => setUrl(e.target.value) } />
-      </label>
-      <button disabled={ isDisabled }>Cadastrar</button>
-      <button onClick={ () => setFormIsVisible(false) }>Cancelar</button>
-      <div>
-        <p className={ password.length >= 8 ? classNameValid : classNameInvalid }>
-          Possuir 8 ou mais caracteres
-        </p>
-        <p className={ password.length <= 16 ? classNameValid : classNameInvalid }>
-          Possuir até 16 caracteres
-        </p>
-        <p className={ /^(?=.*[a-zA-Z])(?=.*\d).*$/.test(password) ? classNameValid : classNameInvalid }>Possuir letras e números</p>
-        <p className={ /[!@#$%^&*(),.?":{}|<>]/.test(password) ? classNameValid : classNameInvalid }>Possuir algum caractere especial </p>
+    <form onSubmit={ savePasswords }>
+      <div className="sla">
+        <div className="inputs">
+          <label htmlFor="serviceName">
+            Nome do serviço
+            <input
+              type="text"
+              id="serviceName"
+              className="name"
+              onChange={ (e) => setServiceName(e.target.value) }
+            />
+          </label>
+          <label htmlFor="login" className="loginPassword">
+            Login
+            <input
+              type="text"
+              id="login"
+              className="login"
+              onChange={ (e) => setLogin(e.target.value) }
+            />
+          </label>
+          <label htmlFor="password" className="loginPassword">
+            Senha
+            <input
+              type="password"
+              id="password"
+              className="password"
+              onChange={ (e) => setPassword(e.target.value) }
+            />
+          </label>
+          <label htmlFor="url">
+            URL
+            <input
+              type="text"
+              id="url"
+              className="url"
+              onChange={ (e) => setUrl(e.target.value) }
+            />
+          </label>
+        </div>
+        <div className="messages">
+          <p
+            className={ password.length >= 8 ? classNameValid : classNameInvalid }
+          >
+            Possuir 8 ou mais caracteres
+          </p>
+          <p
+            className={
+              password.length <= 16 ? classNameValid : classNameInvalid
+            }
+          >
+            Possuir até 16 caracteres
+          </p>
+          <p
+            className={
+              /^(?=.*[a-zA-Z])(?=.*\d).*$/.test(password)
+                ? classNameValid
+                : classNameInvalid
+            }
+          >
+            Possuir letras e números
+          </p>
+          <p
+            className={
+              /[!@#$%^&*(),.?":{}|<>]/.test(password)
+                ? classNameValid
+                : classNameInvalid
+            }
+          >
+            Possuir algum caractere especial
+          </p>
+        </div>
+      </div>
+      <div className="button">
+        <button className="Cancelar" onClick={ () => setFormIsVisible(false) }>
+          Cancelar
+        </button>
+        <button className="Cadastrar" type="submit" disabled={ isDisabled }>
+          Cadastrar
+        </button>
       </div>
     </form>
   );

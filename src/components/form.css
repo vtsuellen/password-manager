@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap') ;
+
+form {
+  background: #1e2029;
+  border-radius: 10px;
+  color: #8d8d8d;
+  font-family: Roboto , sans-serif;
+  height: 412px;
+  left: 273px;
+  top: 197px;
+  width: 897px;
+}
+
+.name {
+  background: #3b3f50;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  left: 303px;
+  top: 252px;
+  width: 500px;
+}
+
+.url {
+  background: #3b3f50;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  left: 301px;
+  top: 428px;
+  width: 500px;
+}
+
+.login {
+  background: #3b3f50;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  left: 303px;
+  top: 340px;
+  width: 236px;
+}
+
+.password {
+  background: #3b3f50;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  left: 303px;
+  top: 339px;
+  width: 271px;
+}
+
+.messages {
+  background: #252730;
+  border-radius: 10px;
+  height: fit-content;
+  margin: auto;
+  padding: 15px;
+  width: fit-content;
+}
+
+label {
+  display: grid;
+  font-size: 12px;
+  gap: 5px;
+}
+
+.button {
+  display: flex;
+  margin-top: 70px;
+}
+
+.Cadastrar {
+  background: #3590f5;
+  border: 0;
+  border-radius: 100px;
+  color: white;
+  font-size: 18px;
+  height: 55px;
+  margin-left: 25%;
+  width: 256px;
+}
+
+.Cancelar {
+  background: transparent;
+  border: none;
+  color: #3590f5;
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.Cancelar:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+.Cadastrar:hover {
+  transform: scale(0.9);
+  transition: all 0.6s;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.sla {
+  display: flex;
+}
