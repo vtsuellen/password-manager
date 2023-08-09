@@ -70,6 +70,7 @@ function Form(props: PropType) {
   const classNameValid = 'valid-password-check';
   const classNameInvalid = 'invalid-password-check';
 
+  // função de cadastrar form
   const savePasswords = (e: any) => {
     e.preventDefault();
 
@@ -85,6 +86,8 @@ function Form(props: PropType) {
     // passwords.push({ serviceName, login, password, url });
 
     // localStorage.setItem('passwords', JSON.stringify(passwords));
+
+    // cria um novo array mantendo o antigo e adicionando as novas informações
     const newPasswords = [...passwords, { serviceName, login, password, url }];
     setPasswords(newPasswords);
     setFormIsVisible(false);

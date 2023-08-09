@@ -40,6 +40,7 @@ function App() {
         passwords={ passwords }
         setPasswords={ setPasswords }
       />}
+      {/* cadastrar */}
       <ul className="Passwords">
         {' '}
         { passwords.length > 0 ? passwords.map((password, key) => (
